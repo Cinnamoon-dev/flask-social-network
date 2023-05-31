@@ -1,2 +1,2 @@
 # Flask Social Network
-A prototype of a social network backend made in python
+Using flask to create a minimal application and (probably) escalating it later.
