@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "flask-social-network"
+version = "0.1.0"
+description = ""
+authors = ["Cinnamoon <pedrolcsilva10@gmail.com>"]
+readme = "README.md"
+packages = [{include = "flask_social_network"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask = "^2.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
