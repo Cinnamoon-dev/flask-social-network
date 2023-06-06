@@ -9,6 +9,8 @@ packages = [{include = "flask_social_network"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 flask = "^2.3.2"
+flask-sqlalchemy = "^3.0.3"
+flask-migrate = "^4.0.4"
 
 
 [build-system]
