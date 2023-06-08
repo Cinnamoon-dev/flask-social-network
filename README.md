@@ -6,3 +6,6 @@ Using flask to create a minimal application of an API and SQLAlchemy as ORM for 
 > flask db init</br>
 > flask db migrate</br>
 > flask db upgrade</br>
+
+### Running the Application
+> python3 run.py </br>
