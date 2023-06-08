@@ -55,3 +55,21 @@ def userAll():
         all["users"].append(data)
 
     return all
+
+
+@app.route("/user/view/<int:id>", methods=["GET"])
+def userView(id: int):
+    user = User.query.get(id)
+
+    if not user:
+        return {
+            "message": "User not found",
+            "error": True
+        }
+
+    data = {
+        "user": user.to_dict(),
+        "error": False
+    }
+    
+    return data
