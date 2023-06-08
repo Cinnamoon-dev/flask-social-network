@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Cinnamoon <pedrolcsilva10@gmail.com>"]
 readme = "README.md"
-packages = [{include = "flask_social_network"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.11"
