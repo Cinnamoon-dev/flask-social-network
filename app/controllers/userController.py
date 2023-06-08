@@ -71,5 +71,39 @@ def userView(id: int):
         "user": user.to_dict(),
         "error": False
     }
-    
+
     return data
+
+
+@app.route("/user/edit/<int:id>", methods=["PUT"])
+def userEdit(id: int):
+    data = request.get_json()
+    user = User.query.get(id)
+
+    if not user:
+        return {
+            "message": "User not found",
+            "error": True
+        }
+    
+    user.name = data.get("name")
+    user.email = data.get("email")
+
+    db.session.add(user)
+
+    try:
+        db.session.flush()
+        db.session.commit()
+
+        return {
+            "message": "User successfully edited",
+            "error": False
+        }
+
+    except:
+        db.session.rollback()
+
+        return {
+            "message": "User edition failed",
+            "error": True
+        }
