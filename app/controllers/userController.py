@@ -6,7 +6,18 @@ from flask import request, jsonify
 @app.route("/user/add", methods=["POST"])
 def userAdd():
     data = request.get_json()
-    user = User(data.get("name"))
+    user = User(
+        data.get("name"),
+        data.get("email").lower()
+    )
+
+    if User.query.filter_by(email=data.get("email").lower()).first():
+        return jsonify(
+            {
+                "message": "Email already registered",
+                "error": True
+            }
+        )
 
     db.session.add(user)
     
