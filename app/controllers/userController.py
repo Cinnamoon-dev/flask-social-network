@@ -31,6 +31,7 @@ def userAdd():
                 "error": False
             }
         )
+    
     except:
         db.session.rollback()
 
@@ -40,3 +41,17 @@ def userAdd():
                 "error": True
             }
         )
+
+
+@app.route("/user/all", methods=["GET"])
+def userAll():
+    users = User.query.all()
+    all = {
+        "users": []
+    }
+
+    for user in users:
+        data = user.to_dict()
+        all["users"].append(data)
+
+    return all
