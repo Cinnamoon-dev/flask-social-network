@@ -107,3 +107,33 @@ def userEdit(id: int):
             "message": "User edition failed",
             "error": True
         }
+
+
+@app.route("/user/delete/<int:id>", methods=["DELETE"])
+def userDelete(id: int):
+    user = User.query.get(id)
+
+    if not user:
+        return {
+            "message": "User not found",
+            "error": True
+        }
+    
+    db.session.delete(user)
+
+    try:
+        db.session.flush()
+        db.session.commit()
+
+        return {
+            "message": "User deleted successfully",
+            "error": False
+        }
+    
+    except:
+        db.session.rollback()
+
+        return {
+            "message": "User could not be deleted",
+            "error": True
+        }
