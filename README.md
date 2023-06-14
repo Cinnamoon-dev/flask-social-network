@@ -1,4 +1,4 @@
-## Abstract
+## Flask API
 Using flask to create a minimal application of an API and SQLAlchemy as ORM for a SQLite database. 
 
 ### Database Configuration
@@ -9,3 +9,7 @@ Using flask to create a minimal application of an API and SQLAlchemy as ORM for 
 
 ### Running the Application
 > python3 run.py </br>
+
+### Creating and using the virtual environment
+> poetry install </br>
+> poetry shell </br>
