@@ -1,0 +1,10 @@
+version: '2.18.1'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "4444:4444"
+    command: "python3 run.py"
