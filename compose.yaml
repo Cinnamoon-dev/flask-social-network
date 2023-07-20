@@ -1,10 +1,29 @@
-version: '2.18.1'
+version: '3.9'
 
 services:
-  app:
+  flask_app:
+    container_name: flask_app
     build:
       context: .
       dockerfile: ./Dockerfile
     ports:
       - "4444:4444"
-    command: "python3 run.py"
+    depends_on:
+      - flask_db
+    networks:
+      - backend
+
+  flask_db:
+    container_name: flask_db
+    image: postgres:12.0-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - backend
+
+networks:
+  backend:
