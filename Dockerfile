@@ -15,8 +15,5 @@ EXPOSE 4444
 
 COPY . .
 
-RUN flask db init
-RUN flask db migrate
-RUN flask db upgrade
 
-CMD [ "python3", "run.py" ]
+CMD [ "./runserver.sh" ]
