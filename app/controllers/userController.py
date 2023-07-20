@@ -90,7 +90,7 @@ def userEdit(id: int):
     
     user.name = data.get("name")
     user.email = data.get("email")
-    user.password = generate_password_hash(data.get("password"))
+    user.password = generate_password_hash(data.get("password"), "scrypt")
 
     db.session.add(user)
 
