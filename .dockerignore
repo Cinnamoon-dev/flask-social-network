@@ -1,0 +1,9 @@
+# project dependencies
+.venv
+
+# python bytecode
+__pycache__/
+
+# sqlite folders
+migrations/
+instance/
