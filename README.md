@@ -15,15 +15,6 @@ After this you can start the containerized application.
 
 </br>
 
-### Database Configuration
-#### Table Generation
-> flask db init</br>
-> flask db migrate</br>
-> flask db upgrade</br>
-
-### Running the Application
-> python3 run.py </br>
-
 ### Creating and using the virtual environment
 The python dependency management tool used is [poetry](https://python-poetry.org/). If you never used it you might want to enable the virtual environment inside the project folder.
 > poetry config virtualenvs.in-project true </br>
@@ -35,3 +26,21 @@ Then you can just install the depedencies and enable the virtual environment.
 > poetry shell </br>
 
 </br>
+
+### Database Configuration
+#### Table Generation
+> flask db init</br>
+> flask db migrate</br>
+> flask db upgrade</br>
+
+</br>
+
+### Running the Application
+> python3 run.py </br>
+
+</br>
+
+### Running the Dockerized Application
+These steps above, besides the Essential Configuration, can just be skipped using these two commands. This way you can just test the containerized application.
+> docker compose up -d flask_db </br>
+> docker compose up -d flask_app </br>
