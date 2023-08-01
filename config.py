@@ -2,8 +2,8 @@ DEBUG = True
 
 USER = "postgres"
 PASSWORD = "postgres"
-HOST = "localhost"
-PORT = "5433"
+HOST = "flask_db"
+PORT = "5432"
 DATABASE_NAME = "postgres"
 
 DATABASE = {
