@@ -11,7 +11,9 @@ RUN poetry config virtualenvs.create false
 RUN poetry install
 
 ENV PORT 4444
+EXPOSE 4444
 
 COPY . .
 
-CMD [ "python3", "run.py" ]
+
+CMD [ "./runserver.sh" ]

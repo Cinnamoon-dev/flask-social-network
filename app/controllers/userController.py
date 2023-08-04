@@ -1,6 +1,7 @@
 from app import app, db
 from app.models.userTable import User
 from flask import request, jsonify
+from werkzeug.security import generate_password_hash
 
 
 @app.route("/user/add", methods=["POST"])
@@ -8,7 +9,8 @@ def userAdd():
     data = request.get_json()
     user = User(
         data.get("name"),
-        data.get("email").lower()
+        data.get("email").lower(),
+        data.get("password")
     )
 
     if User.query.filter_by(email=data.get("email").lower()).first():
@@ -88,6 +90,7 @@ def userEdit(id: int):
     
     user.name = data.get("name")
     user.email = data.get("email")
+    user.password = generate_password_hash(data.get("password"), "scrypt")
 
     db.session.add(user)
 
