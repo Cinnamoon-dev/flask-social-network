@@ -12,6 +12,7 @@ flask = "^2.3.2"
 flask-sqlalchemy = "^3.0.3"
 flask-migrate = "^4.0.4"
 psycopg2-binary = "^2.9.6"
+flask-cors = "^4.0.0"
 
 
 [build-system]
