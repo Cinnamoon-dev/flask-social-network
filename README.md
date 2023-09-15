@@ -21,5 +21,6 @@ Then you can just install the depedencies and enable the virtual environment.
 > python3 run.py </br>
 
 ### Running the Dockerized Application
-You can just skip the steps above and test the application using docker compose.
-> docker compose up </br>
+You can just skip the steps above and test the application using docker compose. Just run these two commands below and you can send HTTP Requests to port 4444 on localhost, by default.
+> docker compose up -d flask_db </br>
+> docker compose up -d flask_app </br>
