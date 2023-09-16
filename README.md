@@ -22,5 +22,4 @@ Then you can just install the depedencies and enable the virtual environment.
 
 ### Running the Dockerized Application
 You can just skip the steps above and test the application using docker compose. Just run these two commands below and you can send HTTP Requests to port 4444 on localhost, by default.
-> docker compose up -d flask_db </br>
-> docker compose up -d flask_app </br>
+> docker compose up </br>
