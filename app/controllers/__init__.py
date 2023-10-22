@@ -10,9 +10,9 @@ def instance_update(instance):
     Example: The table User has three columns (id, name, email) and the request object has five fields (name, age, bloodType, email, address).
     The updated fields in the instance will be (name, email).
 
-    The parameter instance should be a query from a table(class) that inherited BaseModel. 
+    The parameter instance should be a query from a table (class that extends BaseModel). 
 
-    `instance = User.query.get(id)`
+    `instance = Table.query.get(id)`
     """
 
     data = request.get_json()
