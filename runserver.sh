@@ -11,4 +11,4 @@ psql -U postgres psql -c "CREATE DATABASE postgres;"
 
 flask db init &&
 flask db migrate &&
-flask db upgrade &&
+flask db upgrade 
