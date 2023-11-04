@@ -1,5 +1,19 @@
-from flask import request
+from flask import request, make_response
 from werkzeug.security import generate_password_hash
+
+
+class ResponseFactory:
+    def successAction():
+        return make_response({"error": False, "message": "Action done successfully"}, 200)
+
+    def databaseError():
+        return make_response({"error": True, "message": "Database error"}, 500)
+
+    def notFound(field: str):
+        return make_response({"error": True, "message": f"{field} not found"}, 404)
+    
+    def alreadyRegistered(field: str):
+        return make_response({"error": True, "message": f"{field} already registered"}, 409)
 
 
 # update table line
