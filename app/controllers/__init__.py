@@ -17,7 +17,7 @@ class ResponseFactory:
 
 
 # update table line
-def instance_update(instance):
+def instance_update(instance, request_json):
     """
     This function updates every key received from the request in an instance of a table, if the key exists in that table.
     
@@ -29,15 +29,14 @@ def instance_update(instance):
     `instance = Table.query.get(id)`
     """
 
-    data = request.get_json()
     instance_keys = list(instance.to_dict().keys())
 
     for key in instance_keys:
-        if key in data:
-            setattr(instance, key, data.get(key))
+        if key in request_json:
+            setattr(instance, key, request_json.get(key))
     
-    if "email" in data:
-        setattr(instance, 'email', data.get("email").lower())
+    if "email" in request_json:
+        setattr(instance, 'email', request_json.get("email").lower())
     
-    if "password" in data:
-        setattr(instance, 'password', generate_password_hash(data.get("password"), method="sha256"))
+    if "password" in request_json:
+        setattr(instance, 'password', generate_password_hash(request_json.get("password"), method="sha256"))
