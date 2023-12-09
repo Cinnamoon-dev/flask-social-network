@@ -26,8 +26,8 @@ services:
     networks:
       - backend
     healthcheck:
-      test: ["CMD-SHELL", "bash -c 'pg_isready -U postgres'"]
-      interval: 15s
+      test: pg_isready -U postgres
+      interval: 3s
       timeout: 3s
       retries: 3
 

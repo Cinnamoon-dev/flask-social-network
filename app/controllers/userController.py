@@ -1,6 +1,7 @@
-from app import app, db
+from app import app, db 
+from flask import request
 from app.models.userTable import User
-from flask import request, jsonify
+from app.controllers import ResponseFactory
 from werkzeug.security import generate_password_hash
 
 
@@ -12,14 +13,9 @@ def userAdd():
         data.get("email").lower(),
         data.get("password")
     )
-
+    
     if User.query.filter_by(email=data.get("email").lower()).first():
-        return jsonify(
-            {
-                "message": "Email already registered",
-                "error": True
-            }
-        )
+        return ResponseFactory.alreadyRegistered("Email") 
 
     db.session.add(user)
     
@@ -27,22 +23,12 @@ def userAdd():
         db.session.flush()
         db.session.commit()
 
-        return jsonify(
-            {
-                "message": "User created successfully",
-                "error": False
-            }
-        )
+        return ResponseFactory.successAction()
     
     except:
         db.session.rollback()
 
-        return jsonify(
-            {
-                "message": "User creation failed",
-                "error": True
-            }
-        )
+        return ResponseFactory.databaseError() 
 
 
 @app.route("/user/all", methods=["GET"])
@@ -64,10 +50,7 @@ def userView(id: int):
     user = User.query.get(id)
 
     if not user:
-        return {
-            "message": "User not found",
-            "error": True
-        }
+        return ResponseFactory.notFound("User")
 
     data = {
         "user": user.to_dict(),
@@ -83,10 +66,7 @@ def userEdit(id: int):
     user = User.query.get(id)
 
     if not user:
-        return {
-            "message": "User not found",
-            "error": True
-        }
+        return ResponseFactory.notFound("User")
     
     user.name = data.get("name")
     user.email = data.get("email")
@@ -98,18 +78,12 @@ def userEdit(id: int):
         db.session.flush()
         db.session.commit()
 
-        return {
-            "message": "User successfully edited",
-            "error": False
-        }
+        return ResponseFactory.successAction()
 
     except:
         db.session.rollback()
 
-        return {
-            "message": "User edition failed",
-            "error": True
-        }
+        return ResponseFactory.databaseError()
 
 
 @app.route("/user/delete/<int:id>", methods=["DELETE"])
@@ -117,10 +91,7 @@ def userDelete(id: int):
     user = User.query.get(id)
 
     if not user:
-        return {
-            "message": "User not found",
-            "error": True
-        }
+        return ResponseFactory.notFound("User") 
     
     db.session.delete(user)
 
@@ -128,15 +99,9 @@ def userDelete(id: int):
         db.session.flush()
         db.session.commit()
 
-        return {
-            "message": "User deleted successfully",
-            "error": False
-        }
+        return ResponseFactory.successAction()
     
     except:
         db.session.rollback()
 
-        return {
-            "message": "User could not be deleted",
-            "error": True
-        }
+        return ResponseFactory.databaseError()
