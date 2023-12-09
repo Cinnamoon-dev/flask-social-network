@@ -9,9 +9,6 @@ RUN pip install poetry
 RUN poetry config virtualenvs.create false
 RUN poetry install
 
-ENV PORT 4444
-EXPOSE 4444
-
 COPY . .
 
 ENTRYPOINT [ "/api/docker/entrypoint.sh" ]
