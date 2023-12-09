@@ -27,7 +27,7 @@ services:
       - backend
     healthcheck:
       test: pg_isready -U postgres
-      interval: 15s
+      interval: 3s
       timeout: 3s
       retries: 3
 
