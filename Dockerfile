@@ -14,5 +14,4 @@ EXPOSE 4444
 
 COPY . .
 
-
-CMD [ "./runserver.sh" ]
+ENTRYPOINT [ "/api/docker/entrypoint.sh" ]
