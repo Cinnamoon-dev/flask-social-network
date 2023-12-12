@@ -1,4 +1,6 @@
-from flask import make_response
+from functools import wraps
+from flask import make_response, request
+from pydantic import BaseModel, ValidationError
 from werkzeug.security import generate_password_hash
 
 
@@ -40,3 +42,20 @@ def instance_update(instance, request_json):
     
     if "password" in request_json:
         setattr(instance, 'password', generate_password_hash(request_json.get("password"), method="sha256"))
+
+# TODO
+# Test decorator
+def request_validator(ModelClass: BaseModel):
+    def wrapper(f):
+        @wraps(f)
+        def wrapped(*args, **kwargs):
+            data = request.get_json()
+
+            try:
+                ModelClass.model_validate(data)
+            except ValidationError as e:
+                return make_response({"error": True, "message": e.json()}, 400)
+
+            return f(*args, **kwargs)
+        return wrapped
+    return wrapper
