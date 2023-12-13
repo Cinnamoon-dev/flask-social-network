@@ -1,11 +1,12 @@
 from app import app, db 
 from flask import request
-from app.models.userTable import User
-from app.controllers import ResponseFactory
+from app import User, UserSchema
+from app.controllers import ResponseFactory, request_validator
 from werkzeug.security import generate_password_hash
 
 
 @app.route("/user/add", methods=["POST"])
+@request_validator(UserSchema)
 def userAdd():
     data = request.get_json()
     user = User(
@@ -60,6 +61,7 @@ def userView(id: int):
     return data
 
 
+@request_validator(UserSchema)
 @app.route("/user/edit/<int:id>", methods=["PUT"])
 def userEdit(id: int):
     data = request.get_json()
