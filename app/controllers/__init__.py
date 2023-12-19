@@ -1,3 +1,4 @@
+import json
 from functools import wraps
 from flask_sqlalchemy import BaseQuery
 from pydantic import BaseModel, ValidationError
@@ -55,7 +56,7 @@ def request_validator(ModelClass: BaseModel):
             try:
                 ModelClass.model_validate(data)
             except ValidationError as e:
-                return make_response({"error": True, "message": e.json()}, 400)
+                return make_response({"error": True, "message": json.loads(e.json())}, 400)
 
             return f(*args, **kwargs)
         return wrapped
