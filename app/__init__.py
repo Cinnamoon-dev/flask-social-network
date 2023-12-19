@@ -14,4 +14,7 @@ migrate = Migrate(app, db)
 
 from app.models.userTable import User
 
+from app.model_schemas.userSchema import UserAddSchema
+from app.model_schemas.userSchema import UserEditSchema
+
 from app.controllers import userController
