@@ -1,0 +1,24 @@
+name: Build and Deploy CD Workflow
+
+on:
+  push:
+    branches: [master, develop]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to any stages
+    runs-on: ubuntu-latest
+    env:
+      PASSWORD: "${{ secrets.SSH_PASSW }}"
+    steps:
+      - name: Deploy to development stage
+        if: ${{ github.ref == 'refs/heads/develop' }}
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSW }}
+          port: 22
+          envs: PASSWORD
+          script: ${{ secrets.SCRIPT_PATH }
