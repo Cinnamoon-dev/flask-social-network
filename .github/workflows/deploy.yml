@@ -21,4 +21,4 @@ jobs:
           password: ${{ secrets.SSH_PASSW }}
           port: 22
           envs: PASSWORD
-          script: ${{ secrets.SCRIPT_PATH }
+          script: ${{ secrets.SCRIPT_PATH }}
